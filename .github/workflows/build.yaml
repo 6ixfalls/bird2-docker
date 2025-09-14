@@ -40,6 +40,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=raw,value=${{ steps.get-tag.outputs.IMAGE_TAG }}
+            type=raw,value=latest,enable={{is_default_branch}}
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@v5
