@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Get image tag from Dockerfile
         id: get-tag
-        run: echo "IMAGE_TAG=$(grep -Eo '^ENV[[:space:]]+BIRD_VERSION=([^[:space:]]+)' Dockerfile | cut -d= -f2 | | tr -d '\"')" >> "$GITHUB_OUTPUT"
+        run: echo "IMAGE_TAG=$(grep -Eo '^ENV[[:space:]]+BIRD_VERSION=([^[:space:]]+)' Dockerfile | cut -d= -f2 | tr -d '\"')" >> "$GITHUB_OUTPUT"
       - name: Docker metadata
         id: meta
         uses: docker/metadata-action@v5
