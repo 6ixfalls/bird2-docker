@@ -1,9 +1,12 @@
-FROM alpine:3.22
+FROM debian:13-slim
 
-# renovate: datasource=repology depName=alpine_3_22/bird2 versioning=loose
-ENV BIRD_VERSION="2.17.1-r0"
+# renovate: datasource=repology depName=debian_13/bird2 versioning=loose
+ENV BIRD_VERSION="2.17.1-1"
 
-RUN apk add --no-cache bird2="${BIRD_VERSION}"
+RUN apt-get update && \
+    apt-get install -y \
+    bird2="${BIRD_VERSION}" \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /run/bird /etc/bird
 
